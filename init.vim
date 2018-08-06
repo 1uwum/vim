@@ -72,13 +72,14 @@ call plug#begin(expand('~/.local/share/nvim/plugged'))
     Plug 'mattn/emmet-vim'
     Plug 'othree/javascript-libraries-syntax.vim'
     Plug 'rust-lang/rust.vim'
-    Plug 'honza/vim-snippet'
+    Plug 'Shougo/neosnippet'
     Plug 'Shougo/neco-syntax'
     Plug 'wokalski/autocomplete-flow'
-    Plug 'Shougo/neosnippet'
     Plug 'airblade/vim-gitgutter'
+    Plug 'lervag/vimtex'
     Plug 'sebastianmarkow/deoplete-rust'
     Plug 'Shougo/neosnippet-snippets'
+    Plug 'honza/vim-snippets'
     Plug 'sheerun/vim-polyglot'
     Plug 'chriskempson/base16-vim'
 call plug#end()
@@ -278,16 +279,27 @@ let g:python3_host_prog =  '/usr/bin/python3'
 let g:SuperTabMappingForward = "<c-space>"
 let g:SuperTabMappingBackward = "<c-alt-space>"
 let g:SuperMappingTabLiteral = "<tab>"
-let g:SuperTabCompletionContexts = [ 's:ContextText', 's:ContextDiscover' ]
-let g:SuperTabContextDiscoverDiscovery =
-  \  [ "&completefunc: <c-x><c-u>", "&omnifunc:<c-x><c-o>" ]
+let g:SuperTabCompletionContexts = [ 's:ContextText', 's:ContextDiscover' ] 
+let g:SuperTabContextDiscoverDiscovery = 
+  \  [ "&completefunc: <c-x><c-u>", "&omnifunc:<c-x><c-o>" ] 
 
 let g:SuperTabDefaultCompletionType = "context"
 let g:SuperTabContextDefaultCompletionType = "<c-n>"
 let g:SuperTabLongestEnhanced = 1
 
-""""""""""""""""""""""""""""""""""""""""
-" neosnippet
-""""""""""""""""""""""""""""""""""""""""
-let g:neosnippet#enable_snipmate_compatibility = 1
-let g:neosnippet#snippets_directory = $XDG_DATA_HOME . '/nvim/plugged/neosnippet-snippets/neosnippets'
+function! OmniTextContext()
+    if filereadable()
+endfunction
+
+let g:SuperTabDiscoverContext = [ "OmniText", "ContextText", "ContextDiscover" ]
+
+"""""""""""""""""""""""""""""""""""""""
+" UltiSnips
+"""""""""""""""""""""""""""""""""""""""
+let g:UltiSnipsExpandTrigger = "<space>"
+let g:UltiSnipsEditSplit = "vertical"
+let g:UltiSnipsJumpForwardTrigger = "<c-j>"
+let g:UltiSnipsJumpBackwardTrigger = "<c-k>"
+
+let g:UltiSnipsSnippetsDirectories = [ $XDG_DATA_HOME . '/nvim/plugged/vim-snippets' ]
+let g:UltiSnipsEnableSnipMate = 1
